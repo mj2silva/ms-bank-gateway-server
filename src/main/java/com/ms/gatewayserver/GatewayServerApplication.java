@@ -6,6 +6,8 @@ import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 
+import java.time.LocalDateTime;
+
 @SpringBootApplication
 public class GatewayServerApplication {
 
@@ -21,21 +23,27 @@ public class GatewayServerApplication {
 						predicateSpec -> predicateSpec
 								.path("/ms-bank/accounts/**")
 								.filters(gatewayFilterSpec -> gatewayFilterSpec
-										.rewritePath("/ms-bank/accounts/?(?<segment>.*)", "/${segment}"))
+										.rewritePath("/ms-bank/accounts/?(?<segment>.*)", "/${segment}")
+										.addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
+								)
 								.uri("lb://ACCOUNTS")
 				)
 				.route(
 						predicateSpec -> predicateSpec
 								.path("/ms-bank/cards/**")
 								.filters(gatewayFilterSpec -> gatewayFilterSpec
-										.rewritePath("/ms-bank/cards/?(?<segment>.*)", "/${segment}"))
+										.rewritePath("/ms-bank/cards/?(?<segment>.*)", "/${segment}")
+										.addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
+								)
 								.uri("lb://CARDS")
 				)
 				.route(
 						predicateSpec -> predicateSpec
 								.path("/ms-bank/loans/**")
 								.filters(gatewayFilterSpec -> gatewayFilterSpec
-										.rewritePath("/ms-bank/loans/?(?<segment>.*)", "/${segment}"))
+										.rewritePath("/ms-bank/loans/?(?<segment>.*)", "/${segment}")
+										.addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
+								)
 								.uri("lb://LOANS")
 				)
 				.build();
