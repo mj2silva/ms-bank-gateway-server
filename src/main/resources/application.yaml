@@ -32,6 +32,12 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8070/eureka/
 
+logging:
+  level:
+    com:
+      ms:
+        gatewayserver: DEBUG
+
 # Info for eureka-server microservice registration
 info:
   app:
