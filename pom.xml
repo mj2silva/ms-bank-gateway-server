@@ -11,8 +11,8 @@
     <groupId>com.ms</groupId>
     <artifactId>gatewayserver</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>gatewayserver</name>
-    <description>gatewayserver</description>
+    <name>MS Bank gateway server</name>
+    <description>Gateway server for MS Bank microservices</description>
     <url/>
     <licenses>
         <license/>
