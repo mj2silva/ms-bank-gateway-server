@@ -1,15 +1,15 @@
 server:
-  port: 8081
+  port: 8073
 spring:
   application:
     name: gatewayserver
   config:
-    import: optional:configserver:http://localhost:8070/
+    import: optional:configserver:http://localhost:8071/
   cloud:
     gateway:
       discovery:
         locator:
-          enabled: true
+          enabled: false
           lower-case-service-id: on
 management:
   endpoints:
