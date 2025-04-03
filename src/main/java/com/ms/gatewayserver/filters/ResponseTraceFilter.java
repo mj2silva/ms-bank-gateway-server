@@ -26,7 +26,7 @@ public class ResponseTraceFilter implements GlobalFilter {
                         Mono.fromRunnable(() -> {
                             var requestHeaders = exchange.getRequest().getHeaders();
                             var correlationId = filterUtility.getCorrelationId(requestHeaders);
-                            exchange.getResponse().getHeaders().add(FilterUtility.CORRELATION_ID_HEADER, correlationId);
+                            exchange.getResponse().getHeaders().add(FilterUtility.CORRELATION_ID_HEADER_NAME, correlationId);
                             logger.debug("Updated the correlation id to the response headers: {}", correlationId);
                         })
                 );

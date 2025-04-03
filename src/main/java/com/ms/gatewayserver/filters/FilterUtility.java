@@ -6,10 +6,10 @@ import org.springframework.web.server.ServerWebExchange;
 
 @Component
 public class FilterUtility {
-    public static final String CORRELATION_ID_HEADER = "X-MsBank-Correlation-Id";
+    public static final String CORRELATION_ID_HEADER_NAME = "X-MsBank-Correlation-Id";
 
     public String getCorrelationId(HttpHeaders requestHeaders) {
-        var requestHeader = requestHeaders.get(CORRELATION_ID_HEADER);
+        var requestHeader = requestHeaders.get(CORRELATION_ID_HEADER_NAME);
         if (requestHeader != null) {
             return requestHeader.stream().findFirst().orElse(null);
         }
@@ -19,7 +19,7 @@ public class FilterUtility {
 
     public ServerWebExchange setCorrelationId(ServerWebExchange exchange, String correlationId) {
         return exchange.mutate().request(
-                exchange.getRequest().mutate().header(CORRELATION_ID_HEADER, correlationId).build()
+                exchange.getRequest().mutate().header(CORRELATION_ID_HEADER_NAME, correlationId).build()
         ).build();
     }
 }
