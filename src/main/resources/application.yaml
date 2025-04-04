@@ -45,3 +45,11 @@ info:
     description: "MS Bank gateway server application"
     version: "1.0.0"
 
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        sliding-window-size: 10
+        permitted-number-of-calls-in-half-open-state: 3
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10000

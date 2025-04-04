@@ -25,6 +25,10 @@ public class GatewayServerApplication {
 								.filters(gatewayFilterSpec -> gatewayFilterSpec
 										.rewritePath("/ms-bank/accounts/?(?<segment>.*)", "/${segment}")
 										.addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
+										.circuitBreaker(config -> config
+												.setName("accounts-circuit-breaker")
+												.setFallbackUri("forward:/contact-support")
+										)
 								)
 								.uri("lb://ACCOUNTS")
 				)
